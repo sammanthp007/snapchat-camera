@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					50B144101E54F50C00918633 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = UMYKV7J55J;
 						ProvisioningStyle = Automatic;
 					};
 					50B144241E54F50C00918633 = {
@@ -410,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UMYKV7J55J;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reecekenney.CustomCamera;
@@ -422,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UMYKV7J55J;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reecekenney.CustomCamera;
@@ -503,6 +506,7 @@
 				50B1443B1E54F50C00918633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50B1443C1E54F50C00918633 /* Build configuration list for PBXNativeTarget "CustomCameraTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +515,7 @@
 				50B1443E1E54F50C00918633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50B1443F1E54F50C00918633 /* Build configuration list for PBXNativeTarget "CustomCameraUITests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +524,7 @@
 				50B144411E54F50C00918633 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
