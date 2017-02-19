@@ -15,8 +15,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var previewLayer:CALayer!
     
     var captureDevice: AVCaptureDevice!
-    var takePhoto:Bool = false
+    var shouldTakePhoto:Bool = false
     var imageView:UIImageView!
+    var photoButton:UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         addButtons()
         
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        imageView.contentMode = .scaleAspectFill        
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(clearImage))
+        imageView.contentMode = .scaleAspectFill
         
         view.addSubview(imageView)
     }
@@ -42,9 +41,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func addButtons() {
         
         let photoButtonWidth:CGFloat = 65.0
-        let photoButton = UIImageView(frame: CGRect(x: view.frame.midX - photoButtonWidth / 2, y: view.frame.height - photoButtonWidth - 20, width: photoButtonWidth, height: photoButtonWidth))
+        photoButton = UIImageView(frame: CGRect(x: view.frame.midX - photoButtonWidth / 2, y: view.frame.height - photoButtonWidth - 20, width: photoButtonWidth, height: photoButtonWidth))
         photoButton.image = UIImage(named: "take-photo")
-        let photoRecognizer = UITapGestureRecognizer(target: self, action: #selector(clearImage))
+        let photoRecognizer = UITapGestureRecognizer(target: self, action: #selector(takePhoto))
         photoButton.addGestureRecognizer(photoRecognizer)
         photoButton.isUserInteractionEnabled = true
         view.addSubview(photoButton)
@@ -99,25 +98,27 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func clearImage() {
-        
-        if imageView.image != nil {
-            imageView.image = nil
-        }
-        else {
-            takePhoto = true
-        }
+        imageView.image = nil
+        photoButton.isUserInteractionEnabled = true
+        self.navigationItem.leftBarButtonItem = nil
+    }
+    
+    func takePhoto() {
+        shouldTakePhoto = true
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         
         
-        if takePhoto {
-            takePhoto = false
+        if shouldTakePhoto {
+            shouldTakePhoto = false
             
             if let image = getImageFromSampleBuffer(buffer: sampleBuffer) {
                 
                 DispatchQueue.main.async {
                     self.imageView.image = image
+                    self.photoButton.isUserInteractionEnabled = false
+                    self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(self.clearImage))
                 }
                 
             }
